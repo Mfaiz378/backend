@@ -1,0 +1,227 @@
+[
+  {
+    "tag": "greeting",
+    "patterns": ["hi", "hello", "hey", "good morning", "good evening"],
+    "responses": ["Hello! How can I help you today?", "Hi there! What brings you here?"]
+  },
+  {
+    "tag": "goodbye",
+    "patterns": ["bye", "goodbye", "see you later", "talk to you soon"],
+    "responses": ["Take care! Stay healthy.", "Goodbye! Come back anytime."]
+  },
+  {
+    "tag": "thanks",
+    "patterns": ["thanks", "thank you", "appreciate it"],
+    "responses": ["You're most welcome!", "Glad I could help!"]
+  },
+  {
+    "tag": "fever",
+    "patterns": ["I have a fever", "temperature is high", "feeling hot", "hot body"],
+    "responses": ["You might want to rest and stay hydrated. Take paracetamol if needed. If it persists, consult a doctor."]
+  },
+  {
+    "tag": "cold",
+    "patterns": ["I have a cold", "runny nose", "sneezing", "blocked nose"],
+    "responses": ["Try steam inhalation and drink warm fluids. Use a nasal spray if needed."]
+  },
+  {
+    "tag": "cough",
+    "patterns": ["I have a cough", "can't stop coughing", "dry cough", "wet cough"],
+    "responses": ["Try warm honey-lemon water. If it's dry or persistent, consult a doctor."]
+  },
+  {
+    "tag": "headache",
+    "patterns": ["I have a headache", "my head hurts", "feeling pressure in my head"],
+    "responses": ["You might try resting or taking a pain reliever like ibuprofen. Avoid screen time."]
+  },
+  {
+    "tag": "stomach_pain",
+    "patterns": ["I have stomach pain", "my tummy hurts", "abdominal pain"],
+    "responses": ["Try eating light meals and drinking plenty of water. If pain is severe, see a doctor."]
+  },
+  {
+    "tag": "diarrhea",
+    "patterns": ["I have diarrhea", "frequent loose motions", "loose stools"],
+    "responses": ["Stay hydrated with ORS and avoid solid foods. If it continues for more than 2 days, consult a doctor."]
+  },
+  {
+    "tag": "vomiting",
+    "patterns": ["I feel like vomiting", "I'm vomiting", "nausea", "feeling sick"],
+    "responses": ["Take sips of water or ginger tea. Rest is important. See a doctor if it doesn't stop."]
+  },
+  {
+    "tag": "covid_symptoms",
+    "patterns": ["I think I have covid", "cough and fever", "loss of smell", "covid symptoms"],
+    "responses": ["Please isolate yourself and get tested. Drink fluids and monitor oxygen levels."]
+  },
+  {
+    "tag": "sore_throat",
+    "patterns": ["sore throat", "pain while swallowing", "itchy throat"],
+    "responses": ["Try warm salt water gargle. Drink warm tea with honey."]
+  },
+  {
+    "tag": "burn",
+    "patterns": ["I burned myself", "got a burn", "hot water burn", "fire burn"],
+    "responses": ["Cool the burn with water for 10 minutes. Don't apply ice or ointments without doctor advice."]
+  },
+  {
+    "tag": "cut",
+    "patterns": ["I got a cut", "bleeding", "small injury", "minor cut"],
+    "responses": ["Clean it with water, apply antiseptic, and cover with a bandage."]
+  },
+  {
+    "tag": "chest_pain",
+    "patterns": ["I'm having chest pain", "pressure on chest", "heart pain"],
+    "responses": ["Seek immediate medical attention. This could be serious."]
+  },
+  {
+    "tag": "breathing_difficulty",
+    "patterns": ["I can't breathe", "shortness of breath", "breathing problem"],
+    "responses": ["Please seek emergency help right away. Do not wait."]
+  },
+  {
+    "tag": "allergy",
+    "patterns": ["I have an allergy", "itchy skin", "rashes", "allergic reaction"],
+    "responses": ["Try antihistamines. Avoid the allergen. Visit a doctor if symptoms are severe."]
+  },
+  {
+    "tag": "fatigue",
+    "patterns": ["I'm tired", "I feel weak", "no energy", "feeling exhausted"],
+    "responses": ["Make sure you're sleeping and eating well. Try light exercise and hydrate."]
+  },
+  {
+    "tag": "anxiety",
+    "patterns": ["I'm anxious", "feeling nervous", "mental stress"],
+    "responses": ["Try deep breathing, meditation, and talk to someone you trust. You're not alone."]
+  },
+  {
+    "tag": "depression",
+    "patterns": ["I'm feeling low", "I feel depressed", "don't feel like doing anything"],
+    "responses": ["It’s okay to feel that way. Talk to a therapist or doctor. You’re not alone."]
+  },
+  {
+    "tag": "bp_high",
+    "patterns": ["high blood pressure", "BP is high", "hypertension"],
+    "responses": ["Avoid salt, stress, and fatty food. Take your prescribed meds and consult your doctor."]
+  },
+  {
+    "tag": "bp_low",
+    "patterns": ["low blood pressure", "BP is low", "hypotension"],
+    "responses": ["Drink more fluids and eat a bit of salt. Lie down and raise your legs."]
+  },
+  {
+    "tag": "diabetes",
+    "patterns": ["I have diabetes", "high sugar", "blood sugar problem"],
+    "responses": ["Avoid sugar and processed food. Eat fiber-rich meals and monitor sugar levels regularly."]
+  },
+  {
+    "tag": "period_pain",
+    "patterns": ["period pain", "cramps", "menstrual pain"],
+    "responses": ["Try a heating pad, rest, and stay hydrated. If very painful, talk to a gynecologist."]
+  },
+  {
+    "tag": "pregnancy",
+    "patterns": ["I'm pregnant", "pregnancy care", "expecting baby"],
+    "responses": ["Congratulations! Eat well, take prenatal vitamins, and visit your doctor regularly."]
+  },
+  {
+    "tag": "toothache",
+    "patterns": ["tooth pain", "toothache", "gum swelling"],
+    "responses": ["Rinse with salt water and avoid cold or sweet food. Visit a dentist."]
+  },
+  {
+    "tag": "eye_pain",
+    "patterns": ["eye hurts", "pain in my eye", "red eye"],
+    "responses": ["Avoid screens and wash eyes with clean water. If persists, consult an eye doctor."]
+  },
+  {
+    "tag": "diet",
+    "patterns": ["healthy diet", "what should I eat", "food for health"],
+    "responses": ["Eat vegetables, fruits, whole grains, and drink plenty of water. Limit sugar and fried food."]
+  },
+  {
+    "tag": "exercise",
+    "patterns": ["exercise tips", "how to stay fit", "workout advice"],
+    "responses": ["Start with 30 mins walking or yoga daily. Consistency is key!"]
+  },
+  {
+    "tag": "vaccination",
+    "patterns": ["should I get vaccinated", "vaccine info", "covid vaccine"],
+    "responses": ["Yes, vaccines are safe and effective. Follow government guidelines."]
+  },
+  {
+    "tag": "child_health",
+    "patterns": ["baby has fever", "child is coughing", "infant health"],
+    "responses": ["Monitor temperature, keep hydrated, and consult a pediatrician."]
+  },
+  {
+    "tag": "elder_care",
+    "patterns": ["care for old people", "elderly help", "parent is sick"],
+    "responses": ["Ensure proper medication, hydration, and regular checkups."]
+  },
+  {
+    "tag": "dehydration",
+    "patterns": ["I'm dehydrated", "dry mouth", "less urination"],
+    "responses": ["Drink ORS or coconut water. Avoid caffeine. Rest well."]
+  },
+  {
+    "tag": "acidity",
+    "patterns": ["I have acidity", "acid reflux", "heartburn"],
+    "responses": ["Avoid spicy foods, eat slowly, and drink water. Try antacids if needed."]
+  },
+  {
+    "tag": "constipation",
+    "patterns": ["I’m constipated", "can't poop", "hard stool"],
+    "responses": ["Eat fiber, drink more water, and exercise. Try a mild laxative if needed."]
+  },
+  {
+    "tag": "sugar_craving",
+    "patterns": ["craving sugar", "sweet craving", "want chocolate"],
+    "responses": ["Try fruits or nuts. Drink water. Sometimes craving is due to dehydration."]
+  },
+  {
+    "tag": "sleep",
+    "patterns": ["I can't sleep", "sleep issues", "insomnia"],
+    "responses": ["Try avoiding screens before bed, drink warm milk, and keep a sleep routine."]
+  },
+  {
+    "tag": "hair_fall",
+    "patterns": ["hair is falling", "hair loss", "balding"],
+    "responses": ["Use mild shampoo, eat protein-rich foods, and consult a dermatologist."]
+  },
+  {
+    "tag": "skin_care",
+    "patterns": ["skin problem", "dry skin", "pimples"],
+    "responses": ["Stay hydrated, wash face regularly, and use mild products."]
+  },
+  {
+    "tag": "weight_gain",
+    "patterns": ["how to gain weight", "too thin", "underweight"],
+    "responses": ["Eat calorie-dense foods, increase protein, and do strength training."]
+  },
+  {
+    "tag": "weight_loss",
+    "patterns": ["how to lose weight", "overweight", "fat loss tips"],
+    "responses": ["Eat healthy, reduce carbs, and walk daily. Avoid sugar and fried items."]
+  },
+  {
+    "tag": "alcohol",
+    "patterns": ["is alcohol good", "I drink alcohol", "alcohol side effects"],
+    "responses": ["Alcohol should be limited. It can harm liver and sleep. Stay within safe limits."]
+  },
+  {
+    "tag": "smoking",
+    "patterns": ["I smoke", "how to quit smoking", "smoking side effects"],
+    "responses": ["Smoking is harmful. Seek support or try nicotine patches to help quit."]
+  },
+  {
+    "tag": "water_intake",
+    "patterns": ["how much water", "daily water", "hydration"],
+    "responses": ["Aim for 2–3 liters per day, more if you're active or it's hot."]
+  },
+  {
+    "tag": "emergency",
+    "patterns": ["emergency", "urgent help", "accident happened"],
+    "responses": ["Call your nearest hospital or ambulance immediately. Stay calm."]
+  }
+]
