@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 import java.util.UUID;
 
+@CrossOrigin(origins = "https://healthbot-frontend.netlify.app")
 @RestController
-@RequestMapping("/api/chat")
-@CrossOrigin
+@RequestMapping("/api/auth")
 public class ChatController {
 
     @Autowired
