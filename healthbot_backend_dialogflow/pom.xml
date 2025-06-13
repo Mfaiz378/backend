@@ -33,7 +33,16 @@
     <version>1.18.30</version>
     <scope>provided</scope>
 </dependency>
-
+<dependency>
+  <groupId>com.fasterxml.jackson.core</groupId>
+  <artifactId>jackson-databind</artifactId>
+</dependency>
+             <dependency>
+    <groupId>jakarta.annotation</groupId>
+    <artifactId>jakarta.annotation-api</artifactId>
+    <version>2.1.1</version>
+</dependency>
+             
 
         <dependency>
             <groupId>com.google.auth</groupId>
@@ -64,11 +73,6 @@
             <version>8.0.33</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.google.cloud</groupId>
-            <artifactId>google-cloud-dialogflow</artifactId>
-            <version>4.9.0</version>
-        </dependency>
 
         <dependency>
             <groupId>jakarta.persistence</groupId>
