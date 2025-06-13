@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@CrossOrigin(origins = "https://healthbot-frontend.netlify.app")
+@CrossOrigin(origins = "https://healthbotplus.netlify.app")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
