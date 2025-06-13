@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @CrossOrigin(origins = "https://healthbot-frontend.netlify.app")
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/chat")
 public class ChatController {
 
     @Autowired
