@@ -47,7 +47,7 @@ public class AuthController {
         tokenRepository.save(vt);
 
         // Send Email
-        String link = "http://localhost:8080/api/auth/verify?token=" + token;
+        String link = "https://healthbot-backend-production.up.railway.app/api/auth/verify?token=" + token;
         emailService.sendSimpleEmail(savedUser.getEmail(), "Verify your email", "Click to verify: " + link);
 
         return "Registration successful! Please check your email to verify your account.";
