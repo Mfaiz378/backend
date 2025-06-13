@@ -9,28 +9,33 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 import java.util.UUID;
 
-@CrossOrigin(origins = "https://healthbotplus.netlify.app")
+//CrossOrigin(origins = "https://healthbotplus.netlify.app")
+// ChatController.java
 @RestController
 @RequestMapping("/api/chat")
+@CrossOrigin(origins = "*")
 public class ChatController {
 
-    @Autowired
-    private DialogflowService dialogflowService;
+    private List<Intent> intents;
+
+    @PostConstruct
+    public void loadIntents() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        InputStream is = getClass().getResourceAsStream("/intents.json");
+        intents = Arrays.asList(mapper.readValue(is, Intent[].class));
+    }
 
     @PostMapping
-    public ResponseEntity<Map<String, String>> chatWithBot(@RequestBody Map<String, String> payload) {
-        try {
-            String message = payload.get("message");
-            String projectId = "healthbot-project"; // <-- Your actual Dialogflow project ID
-            String sessionId = payload.getOrDefault("sessionId", UUID.randomUUID().toString());
-            String languageCode = "en";
-
-            String response = dialogflowService.detectIntentTexts(projectId, sessionId, message, languageCode);
-            Map<String, String> reply = Map.of("reply", response);
-            return ResponseEntity.ok(reply);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(Map.of("reply", "Error: " + e.getMessage()));
+    public Map<String, String> chat(@RequestBody Map<String, String> payload) {
+        String userMessage = payload.get("message").toLowerCase();
+        for (Intent intent : intents) {
+            for (String pattern : intent.getPatterns()) {
+                if (userMessage.contains(pattern.toLowerCase())) {
+                    String reply = intent.getResponses().get(0); // Choose the first response
+                    return Map.of("reply", reply);
+                }
+            }
         }
+        return Map.of("reply", "Sorry, I didn't understand. Please try again.");
     }
 }
