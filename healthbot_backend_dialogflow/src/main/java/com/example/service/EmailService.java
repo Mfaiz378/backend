@@ -11,10 +11,14 @@ public class EmailService {
     private JavaMailSender mailSender;
 
     public void sendSimpleEmail(String to, String subject, String body) {
-        SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo(to);
-        msg.setSubject(subject);
-        msg.setText(body);
-        mailSender.send(msg);
+        try {
+            SimpleMailMessage msg = new SimpleMailMessage();
+            msg.setTo(to);
+            msg.setSubject(subject);
+            msg.setText(body);
+            mailSender.send(msg);
+        } catch (Exception e) {
+            System.err.println("Render blocked SMTP or mail failed: " + e.getMessage());
+        }
     }
 }
