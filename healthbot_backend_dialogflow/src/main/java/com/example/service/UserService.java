@@ -11,7 +11,6 @@ public class UserService {
     private UserRepository userRepository;
 
     public User register(User user) {
-        user.setVerified(true); // Ensures data.verified is true in Login.js
         return userRepository.save(user);
     }
 
