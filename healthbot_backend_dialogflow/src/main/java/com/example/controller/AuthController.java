@@ -1,7 +1,9 @@
 package com.example.controller;
 
+import com.example.model.PasswordResetToken;
 import com.example.model.User;
 import com.example.model.VerificationToken;
+import com.example.repository.PasswordResetTokenRepository;
 import com.example.repository.TokenRepository;
 import com.example.repository.UserRepository;
 import com.example.service.EmailService;
@@ -33,27 +35,26 @@ public class AuthController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PasswordResetTokenRepository passwordResetTokenRepository;
+
     // 1. Signup Endpoint
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody User user) {
-        // Check if user already exists
         if (userRepository.findByEmail(user.getEmail()) != null) {
             Map<String, String> err = new HashMap<>();
             err.put("message", "Email is already registered.");
             return ResponseEntity.badRequest().body(err);
         }
 
-        // Set user to enabled directly (bypass email lock while on Render free tier)
         user.setEnabled(true);
         User savedUser = userService.register(user);
 
-        // Generate Token
         try {
             String token = UUID.randomUUID().toString();
             VerificationToken vt = new VerificationToken(token, savedUser, LocalDateTime.now().plusMinutes(15));
             tokenRepository.save(vt);
 
-            // Send Email using Render URL
             String link = "https://healthbot-backend-service.onrender.com/api/auth/verify?token=" + token;
             emailService.sendSimpleEmail(savedUser.getEmail(), "Verify your email", "Click to verify: " + link);
         } catch (Exception e) {
@@ -109,11 +110,74 @@ public class AuthController {
         return ResponseEntity.ok("Email verified successfully! You can now log in.");
     }
 
+    // 4. Forgot Password Endpoint (Generate Token & Email Reset Link)
+    @PostMapping("/forgot-password")
+    public ResponseEntity<?> forgotPassword(@RequestBody Map<String, String> payload) {
+        String email = payload.get("email");
+        User user = userRepository.findByEmail(email);
+
+        Map<String, String> res = new HashMap<>();
+        if (user == null) {
+            res.put("message", "If an account exists with this email, a reset link has been sent.");
+            return ResponseEntity.ok(res);
+        }
+
+        try {
+            String token = UUID.randomUUID().toString();
+            PasswordResetToken resetToken = new PasswordResetToken(token, user, LocalDateTime.now().plusMinutes(15));
+            passwordResetTokenRepository.save(resetToken);
+
+            String resetLink = "https://healthbotplus.netlify.app/reset-password?token=" + token;
+            emailService.sendSimpleEmail(
+                user.getEmail(),
+                "Password Reset Request",
+                "Click the link below to reset your password (valid for 15 minutes):\n" + resetLink
+            );
+        } catch (Exception e) {
+            System.err.println("Password reset token/email creation skipped: " + e.getMessage());
+        }
+
+        res.put("message", "If an account exists with this email, a reset link has been sent.");
+        return ResponseEntity.ok(res);
+    }
+
+    // 5. Reset Password Endpoint (Validate Token & Update Password)
+    @PostMapping("/reset-password")
+    public ResponseEntity<?> resetPassword(@RequestBody Map<String, String> payload) {
+        String token = payload.get("token");
+        String newPassword = payload.get("newPassword");
+
+        PasswordResetToken resetToken = passwordResetTokenRepository.findByToken(token);
+        if (resetToken == null) {
+            Map<String, String> err = new HashMap<>();
+            err.put("message", "Invalid or missing reset token.");
+            return ResponseEntity.badRequest().body(err);
+        }
+
+        if (resetToken.getExpiryDate().isBefore(LocalDateTime.now())) {
+            passwordResetTokenRepository.delete(resetToken);
+            Map<String, String> err = new HashMap<>();
+            err.put("message", "Reset token has expired. Please request a new one.");
+            return ResponseEntity.badRequest().body(err);
+        }
+
+        User user = resetToken.getUser();
+        user.setPassword(newPassword);
+        userRepository.save(user);
+
+        passwordResetTokenRepository.delete(resetToken);
+
+        Map<String, String> res = new HashMap<>();
+        res.put("message", "Password has been successfully reset. You can now log in.");
+        return ResponseEntity.ok(res);
+    }
+
     // Dev utility
     @DeleteMapping("/delete-all")
     public ResponseEntity<?> deleteAll() {
+        passwordResetTokenRepository.deleteAll();
         tokenRepository.deleteAll();
         userRepository.deleteAll();
-        return ResponseEntity.ok("All users and verification tokens deleted.");
+        return ResponseEntity.ok("All users, verification tokens, and reset tokens deleted.");
     }
 }
